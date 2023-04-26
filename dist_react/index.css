@@ -1,0 +1,65 @@
+body{
+    background-color:black;
+    text-align: center;
+}
+.container{
+    margin-left: 170px;
+    margin-right: 170px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 5px;
+}
+h1{
+    text-align: center;
+    color: lawngreen;
+}
+.card{
+    height: 300px;
+    width: 250px; 
+    background-color: rgb(0, 0, 0);
+    border-radius: 5px;
+    position: relative;
+}
+.card img{
+    border: 2px solid rgb(89, 240, 55);
+    border-radius: 5px;
+    height: 290px;
+    width: 240px; 
+}
+.card .front{
+    transform: rotateY(90deg);
+    transition: all ease-in 0.2s;
+    position: absolute;
+}
+.flipped .front{
+    transform: rotateY(0deg);
+    transition-delay: 0.2s;
+}
+
+.card .back{
+    transition: all ease-in 0.2s;
+    transition-delay: 0.2s;
+}
+.flipped .back{
+    transform: rotateY(90deg);
+    transition-delay: 0s;
+}
+
+button{
+    background: none;
+    border: 2px solid lawngreen;
+    border-radius: 4px;
+    font-weight: bold;
+    color: white;
+    padding: 6px 12px;
+    margin-bottom: 15px;
+}
+button:hover{
+    background-color: lawngreen;
+    color: white;
+}
+
+.titulo{
+    text-align: center;
+}
+
