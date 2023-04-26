@@ -45,6 +45,9 @@ h1{
     transition-delay: 0s;
 }
 
+.back:hover{
+    border: 2px solid rgb(55, 237, 240);
+}
 button{
     background: none;
     border: 2px solid lawngreen;

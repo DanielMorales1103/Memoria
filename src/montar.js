@@ -27,11 +27,13 @@ export default function MontarMemoria(){
     const[cartados, setCartados] = useState(null)
     const[disabled,setDisabled] = useState(false)
     const[cont, setCont] = useState(0)
+    const[gameOver, setGameOver] = useState(false)
 
     const reload=()=>{
         setArray(arreglo.sort(()=>Math.random() -0.5))  
         setTurns(0);
         setCont(0);
+        setGameOver(false)
     }
 
     useEffect(()=>{
@@ -42,6 +44,7 @@ export default function MontarMemoria(){
     const handleChoice = (card) =>{
         cartauno ? setCartados(card) : setCartauno(card)
     }
+    
 
     useEffect(()=>{       
         if (cartauno && cartados){
@@ -54,11 +57,12 @@ export default function MontarMemoria(){
                             return {...card, selected: true}
                         }else{
                             return card 
-                        }
-                        
-                    })
+                        }                        
+                    })                    
                 })
-                
+                if(cont === 7){
+                    setTimeout(()=>setGameOver(true),1500)  
+                }
                 resetTurn()
             }else{
                 setTimeout(()=>resetTurn(),700)         
@@ -79,16 +83,28 @@ export default function MontarMemoria(){
          < >
          <h1>Memoria</h1>
          <h1>Contador: {turnos}</h1>
-         <button onClick={reload}>New Game</button>
-         <div className='container'>   
-            {array.map (element => { 
-                return <CrearCarta imagen={element.image} 
-                id={element.id} card={element} handleChoice={handleChoice}
-                flipped ={element === cartauno || element === cartados || element.selected}
-                disabled={disabled}
-                />
-            })}
-        </div>
+         <button onClick={reload}>New Game</button>           
+            {          
+            gameOver ? (
+                <div>
+                  <h1>¡Ganaste!</h1>
+                  <h1>Puntaje: {turnos}</h1>
+                  <img className='ImgGameOver' src="https://www.semana.com/resizer/zNEL7bv1BByOAv-xj-qul_IliJ8=/1280x0/smart/filters:format(jpg):quality(80)/cloudfront-us-east-1.images.arcpublishing.com/semana/A5G6YZPWGJBI3FJZ7ZR73JFCYY.webp"/>
+                </div>
+              ) : (
+                <div className='container'>
+                    {
+                        array.map (element => { 
+                        return <CrearCarta imagen={element.image} 
+                        id={element.id} card={element} handleChoice={handleChoice}
+                        flipped ={element === cartauno || element === cartados || element.selected}
+                        disabled={disabled}
+                        />
+                        })
+                    }
+                </div>
+              )                                 
+            }
         </> 
         
     )
