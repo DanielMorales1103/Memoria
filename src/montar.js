@@ -82,18 +82,20 @@ export default function MontarMemoria(){
     return( 
          < >
          <h1>Memoria</h1>
-         <h1>Contador: {turnos}</h1>
          <button onClick={reload}>New Game</button>           
             {          
             gameOver ? (
                 <div>
                   <h1>¡Ganaste!</h1>
                   <h1>Puntaje: {turnos}</h1>
-                  <img className='ImgGameOver' src="https://www.semana.com/resizer/zNEL7bv1BByOAv-xj-qul_IliJ8=/1280x0/smart/filters:format(jpg):quality(80)/cloudfront-us-east-1.images.arcpublishing.com/semana/A5G6YZPWGJBI3FJZ7ZR73JFCYY.webp"/>
+                  <img className='ImgGameOver' width='600px' height='300px'
+                  src="https://www.semana.com/resizer/zNEL7bv1BByOAv-xj-qul_IliJ8=/1280x0/smart/filters:format(jpg):quality(80)/cloudfront-us-east-1.images.arcpublishing.com/semana/A5G6YZPWGJBI3FJZ7ZR73JFCYY.webp"/>
                 </div>
               ) : (
-                <div className='container'>
-                    {
+                <>
+                <h1>Contador: {turnos}</h1>
+                <div className='container'>                    
+                    {                        
                         array.map (element => { 
                         return <CrearCarta imagen={element.image} 
                         id={element.id} card={element} handleChoice={handleChoice}
@@ -103,6 +105,7 @@ export default function MontarMemoria(){
                         })
                     }
                 </div>
+                </>
               )                                 
             }
         </> 
